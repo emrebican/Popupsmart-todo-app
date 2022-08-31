@@ -1,27 +1,29 @@
 import { createSlice, createAsyncThunk, nanoid } from "@reduxjs/toolkit";
-
-interface TodoInterface {
-  title: string;
-  id: string;
-  completed: boolean;
-  edit: boolean;
-}
-
-interface TodoState {
-  todos: any;
-}
+import { TodoState, TodoInterface } from "../interfaces/interfaces";
+import localStore from "../utilities/localStore";
 
 const initialState: TodoState = {
   todos: [],
+  user: {
+    login: localStore ? true : false,
+    name: localStore ? localStore : null,
+  },
 };
 
 export const todosSlice = createSlice({
   name: "todos",
   initialState,
-  reducers: {},
+  reducers: {
+    getUser: (state, action) => {
+      state.user = {
+        login: action.payload.login,
+        name: action.payload.name,
+      };
+    },
+  },
   extraReducers: {},
 });
 
-export const {} = todosSlice.actions;
+export const { getUser } = todosSlice.actions;
 
 export default todosSlice.reducer;
