@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { addTodo } from "../../features/todosSlice";
+
 
 const TodoAdd = () => {
   const [inputValue, setInputValue] = useState<string>("");
@@ -8,6 +10,7 @@ const TodoAdd = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     /***************** dispatch - if it's min 3 caracter *****************/
+    dispatch(addTodo(inputValue));
     setInputValue("");
   };
 

@@ -9,8 +9,11 @@ import TodoList from "./components/TodoList/TodoList";
 function App() {
   const login = useSelector((state: RootState) => state.todos.user.login);
   const name = useSelector((state: RootState) => state.todos.user.name);
-  console.log("login: ",login);
-  console.log("name: ",name);
+  const todos = useSelector((state: RootState) => state.todos.todos);
+  console.log("login: ", login);
+  console.log("name: ", name);
+  console.log(todos);
+  
 
   return (
     <React.Fragment>

@@ -6,7 +6,7 @@ export interface TodoInterface {
   date: string;
 }
 
-interface UserInterface {
+export interface UserInterface {
   login: boolean;
   name: string;
 }
