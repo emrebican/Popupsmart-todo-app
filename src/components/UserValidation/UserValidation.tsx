@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../features/todosSlice";
 
-// const regex = /[0-9a-zA-Z]{3,}/;***********************************
+import { userNamePass } from "../../utilities/userNamePass";
 
 const UserValidation = () => {
   const [userName, setUserName] = useState<string>("");
@@ -15,7 +15,8 @@ const UserValidation = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    dispatch(getUser({ login: true, name: userName }));
+    if (userNamePass(userName))
+      dispatch(getUser({ login: true, name: userName }));
 
     setUserName("");
   };
