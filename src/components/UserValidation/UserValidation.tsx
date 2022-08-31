@@ -15,7 +15,7 @@ const UserValidation = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (userNamePass(userName))
+    userNamePass(userName) &&
       dispatch(getUser({ login: true, name: userName }));
 
     setUserName("");

@@ -17,3 +17,11 @@ const useTimeAgo = ({ timestamp }) => {
 
 export default useTimeAgo;
  */
+
+import React from "react";
+
+const useTimeAgo = () => {
+  return <div></div>;
+};
+
+export default useTimeAgo;
