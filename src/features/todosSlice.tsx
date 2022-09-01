@@ -8,6 +8,7 @@ const TODOS_URL = "https://630df577b37c364eb70fbb2c.mockapi.io/api/v1/todos";
 // Initial State
 const initialState: TodoState = {
   todos: [],
+  themeColor: false,
   user: {
     login: getLocalStorage ? true : false,
     name: getLocalStorage ? getLocalStorage : null,
@@ -51,6 +52,9 @@ export const todosSlice = createSlice({
         name: action.payload.name,
       };
     },
+    themeToggle: (state) => {
+      state.themeColor = !state.themeColor;
+    },
   },
   extraReducers: {
     [fetchTodos.fulfilled]: (state, action) => {
@@ -65,6 +69,6 @@ export const todosSlice = createSlice({
   },
 });
 
-export const { getUser } = todosSlice.actions;
+export const { getUser, themeToggle } = todosSlice.actions;
 
 export default todosSlice.reducer;

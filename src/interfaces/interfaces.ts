@@ -11,6 +11,7 @@ export interface UserInterface {
 
 export interface TodoState {
   todos: any;
+  themeColor: boolean;
   user: UserInterface;
 }
 
