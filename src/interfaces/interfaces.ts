@@ -1,7 +1,5 @@
 export interface TodoInterface {
   title: string;
-  id: string;
-  completed: boolean;
   edit: boolean;
   date: string;
 }
@@ -14,4 +12,6 @@ export interface UserInterface {
 export interface TodoState {
   todos: any;
   user: UserInterface;
+  loading: boolean;
+  error_message: string;
 }

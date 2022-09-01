@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const showToast = () =>
+export const showToast = () => {
   toast.warn("Need to type more than 3 letters!", {
     position: "top-right",
     autoClose: 1500,
@@ -11,3 +11,4 @@ export const showToast = () =>
     draggable: true,
     progress: undefined,
   });
+};

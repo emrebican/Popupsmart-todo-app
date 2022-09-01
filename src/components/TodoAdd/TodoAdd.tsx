@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { addTodo } from "../../features/todosSlice";
 
-import { Flip } from "react-toastify";
+import { addNewTodo } from "../../features/todosSlice";
 import { todoTitlePass } from "../../utilities/userNamePass";
 import { showToast } from "../../utilities/showToast";
+import { TodoInterface } from "../../interfaces/interfaces";
 
 const TodoAdd = () => {
-  const [inputValue, setInputValue] = useState<string>("");
   const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    todoTitlePass(inputValue) ? dispatch(addTodo(inputValue)) : showToast();
+    const content: TodoInterface = {
+      title: inputValue,
+      edit: false,
+      date: "date",
+    };
+
+    todoTitlePass(inputValue) ? dispatch(addNewTodo(content)) : showToast();
 
     setInputValue("");
   };
@@ -40,7 +46,7 @@ const TodoAdd = () => {
         rtl={false}
         pauseOnFocusLoss
         pauseOnHover
-        toastStyle={{backgroundColor: "#212121", color: "#eee"}}
+        toastStyle={{ backgroundColor: "#212121", color: "#eee" }}
       />
     </>
   );
