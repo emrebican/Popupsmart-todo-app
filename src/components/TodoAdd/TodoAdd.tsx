@@ -12,13 +12,15 @@ const TodoAdd = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<string>("");
 
+  const TODO_DATE = new Date().toISOString();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const content: TodoInterface = {
       title: inputValue,
       edit: false,
-      date: "date",
+      date: TODO_DATE,
     };
 
     todoTitlePass(inputValue) ? dispatch(addNewTodo(content)) : showToast();

@@ -15,3 +15,10 @@ export interface TodoState {
   loading: boolean;
   error_message: string;
 }
+
+export interface MockInterface {
+  title: string;
+  date: string;
+  isCompleted: boolean;
+  edit: boolean;
+}
