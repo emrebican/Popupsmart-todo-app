@@ -1,13 +1,17 @@
+import axios from "axios";
 import { useDispatch } from "react-redux";
+import React, { useState, useEffect, useRef } from "react";
+
+import { fetchTodos, deleteTodo } from "../../features/todosSlice";
+import {} from "../../features/todosSlice";
 import TimeAgo from "../../hooks/TimeAgo";
-import { deleteTodo, updateTodo } from "../../features/todosSlice";
-import { fetchTodos } from "../../features/todosSlice";
 
 import { MockInterface } from "../../interfaces/interfaces";
-import axios from "axios";
 
 const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
   const dispatch = useDispatch();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [editTodo, setEditTodo] = useState<string>(title);
 
   const handleDelete = async () => {
     await dispatch(deleteTodo(id));
@@ -15,7 +19,7 @@ const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
   };
 
   const handleComplete = async () => {
-    const complete = { isCompleted: !isCompleted };
+    const complete = { isCompleted: !isCompleted, edit: false };
     await axios.put(
       `https://630df577b37c364eb70fbb2c.mockapi.io/api/v1/todos/${id}`,
       complete
@@ -23,21 +27,42 @@ const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
     await dispatch(fetchTodos());
   };
 
-  const handleUpdate = async () => {
-    const newData = { title: "hello world" };
-    await dispatch(updateTodo(id, newData));
+  const handleEdit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const editing = { title: editTodo, edit: !edit };
+
+    !isCompleted &&
+      (await axios.put(
+        `https://630df577b37c364eb70fbb2c.mockapi.io/api/v1/todos/${id}`,
+        editing
+      ));
+
     await dispatch(fetchTodos());
   };
 
+  useEffect(() => {
+    setEditTodo(title);
+    inputRef.current?.focus();
+  }, [edit]);
+
   return (
-    <div style={{ color: isCompleted ? "red" : "black" }}>
-      <h2>{title}</h2>
+    <form onSubmit={handleEdit}>
+      {edit && !isCompleted ? (
+        <input
+          type="text"
+          ref={inputRef}
+          value={editTodo}
+          onChange={(e) => setEditTodo(e.target.value)}
+        />
+      ) : (
+        <h2>{title}</h2>
+      )}
       <h3>{isCompleted ? "true" : "false"}</h3>
       <button onClick={handleDelete}>delete</button>
       <button onClick={handleComplete}>complete</button>
-      <button onClick={handleUpdate}>update</button>
+      <button onClick={handleEdit}>edit</button>
       <TimeAgo timestamp={date} />
-    </div>
+    </form>
   );
 };
 

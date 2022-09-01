@@ -1,10 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import {
-  TodoState,
-  UserInterface,
-  MockInterface,
-} from "../interfaces/interfaces";
+import { TodoState, UserInterface } from "../interfaces/interfaces";
 import getLocalStorage from "../utilities/getLocalStorage";
 
 const TODOS_URL = "https://630df577b37c364eb70fbb2c.mockapi.io/api/v1/todos";
@@ -20,7 +16,6 @@ const initialState: TodoState = {
   error_message: "",
 };
 
-// Thunk
 // fetch todos
 export const fetchTodos: any = createAsyncThunk(
   "todos/fetchTodos",
@@ -38,12 +33,8 @@ export const fetchTodos: any = createAsyncThunk(
 export const addNewTodo: any = createAsyncThunk(
   "todos/addNewTodo",
   async (initialTodo) => {
-    try {
-      const response = await axios.post(TODOS_URL, initialTodo);
-      return response.data;
-    } catch (error: any) {
-      return error.message;
-    }
+    const response = await axios.post(TODOS_URL, initialTodo);
+    return response.data;
   }
 );
 
@@ -52,16 +43,6 @@ export const deleteTodo: any = createAsyncThunk(
   "todos/deleteTodo",
   async (id) => {
     const response = await axios.delete(TODOS_URL + `/${id}`);
-    return response.data;
-  }
-);
-
-/* ***********  NOT WORKING  **************  */
-export const updateTodo: any = createAsyncThunk(
-  "todos/updateTodo",
-  async (id, newData) => {
-    const axios = require("axios");
-    const response = await axios.put(TODOS_URL + `/${id}`, newData);
     return response.data;
   }
 );
@@ -89,7 +70,6 @@ export const todosSlice = createSlice({
       state.loading = false;
       state.error_message = action.payload;
     },
-
     [addNewTodo.fulfilled]: (state, action) => {
       state.todos.push(action.payload);
     },
