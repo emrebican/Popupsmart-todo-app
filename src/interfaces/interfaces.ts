@@ -21,4 +21,5 @@ export interface MockInterface {
   date: string;
   isCompleted: boolean;
   edit: boolean;
+  id: string;
 }

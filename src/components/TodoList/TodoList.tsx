@@ -1,4 +1,6 @@
 import { useSelector } from "react-redux";
+import { MockInterface } from "../../interfaces/interfaces";
+
 import { RootState } from "../../store";
 
 import TodoItem from "../TodoItem/TodoItem";
@@ -6,7 +8,7 @@ import TodoItem from "../TodoItem/TodoItem";
 const TodoList = () => {
   const todos = useSelector((state: RootState) => state.todos.todos);
 
-  const displayTodos = todos.map((todo: any) => (
+  const displayTodos = todos.map((todo: MockInterface) => (
     <div key={todo.id}>
       <TodoItem {...todo} />
     </div>
