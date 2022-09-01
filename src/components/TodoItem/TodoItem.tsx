@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import React, { useState, useEffect, useRef } from "react";
 
 import { fetchTodos, deleteTodo } from "../../features/todosSlice";
-import {} from "../../features/todosSlice";
+import { todoTitlePass } from "../../utilities/userNamePass";
 import TimeAgo from "../../hooks/TimeAgo";
 
 import { MockInterface } from "../../interfaces/interfaces";
@@ -32,6 +32,7 @@ const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
     const editing = { title: editTodo, edit: !edit };
 
     !isCompleted &&
+      todoTitlePass(editTodo) &&
       (await axios.put(
         `https://630df577b37c364eb70fbb2c.mockapi.io/api/v1/todos/${id}`,
         editing
@@ -46,23 +47,25 @@ const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
   }, [edit]);
 
   return (
-    <form onSubmit={handleEdit}>
-      {edit && !isCompleted ? (
-        <input
-          type="text"
-          ref={inputRef}
-          value={editTodo}
-          onChange={(e) => setEditTodo(e.target.value)}
-        />
-      ) : (
-        <h2>{title}</h2>
-      )}
+    <div>
+      <form onSubmit={handleEdit}>
+        {edit && !isCompleted ? (
+          <input
+            type="text"
+            ref={inputRef}
+            value={editTodo}
+            onChange={(e) => setEditTodo(e.target.value)}
+          />
+        ) : (
+          <h2>{title}</h2>
+        )}
+      </form>
       <h3>{isCompleted ? "true" : "false"}</h3>
       <button onClick={handleDelete}>delete</button>
       <button onClick={handleComplete}>complete</button>
       <button onClick={handleEdit}>edit</button>
       <TimeAgo timestamp={date} />
-    </form>
+    </div>
   );
 };
 

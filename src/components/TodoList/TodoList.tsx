@@ -9,9 +9,7 @@ const TodoList = () => {
   const todos = useSelector((state: RootState) => state.todos.todos);
 
   const displayTodos = todos.map((todo: MockInterface) => (
-    <div key={todo.id}>
-      <TodoItem {...todo} />
-    </div>
+    <TodoItem key={todo.id} {...todo} />
   ));
 
   return <div>{displayTodos}</div>;

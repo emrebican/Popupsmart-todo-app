@@ -12,20 +12,14 @@ const initialState: TodoState = {
     login: getLocalStorage ? true : false,
     name: getLocalStorage ? getLocalStorage : null,
   },
-  loading: false,
-  error_message: "",
 };
 
 // fetch todos
 export const fetchTodos: any = createAsyncThunk(
   "todos/fetchTodos",
   async () => {
-    try {
-      const response = await axios.get(TODOS_URL);
-      return [...response.data];
-    } catch (error: any) {
-      return error.message;
-    }
+    const response = await axios.get(TODOS_URL);
+    return [...response.data];
   }
 );
 
@@ -59,19 +53,14 @@ export const todosSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchTodos.pending]: (state) => {
-      state.loading = true;
-    },
     [fetchTodos.fulfilled]: (state, action) => {
-      state.loading = false;
       state.todos = action.payload;
-    },
-    [fetchTodos.rejected]: (state, action) => {
-      state.loading = false;
-      state.error_message = action.payload;
     },
     [addNewTodo.fulfilled]: (state, action) => {
       state.todos.push(action.payload);
+    },
+    [deleteTodo.fulfilled]: (state, action) => {
+      state.todos.filter((todo: any) => todo.id !== action.payload.id);
     },
   },
 });

@@ -12,8 +12,6 @@ export interface UserInterface {
 export interface TodoState {
   todos: any;
   user: UserInterface;
-  loading: boolean;
-  error_message: string;
 }
 
 export interface MockInterface {
