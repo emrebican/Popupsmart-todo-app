@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { addNewTodo } from "../../features/todosSlice";
@@ -42,17 +41,6 @@ const TodoAdd = () => {
         />
         <button type="submit">Add</button>
       </form>
-      <ToastContainer
-        position="top-right"
-        transition={Flip}
-        autoClose={1500}
-        hideProgressBar
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        pauseOnHover
-        toastStyle={{ backgroundColor: "#212121", color: "#eee" }}
-      />
     </>
   );
 };

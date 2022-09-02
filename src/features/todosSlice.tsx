@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { TodoState, UserInterface } from "../interfaces/interfaces";
 import getLocalStorage from "../utilities/getLocalStorage";
+import { ALERT_DELETED, ALERT_ADDED } from "../components/constants/constant";
+import { showToast } from "../utilities/showToast";
 
 const TODOS_URL = "https://630df577b37c364eb70fbb2c.mockapi.io/api/v1/todos";
 
@@ -29,6 +31,7 @@ export const addNewTodo: any = createAsyncThunk(
   "todos/addNewTodo",
   async (initialTodo) => {
     const response = await axios.post(TODOS_URL, initialTodo);
+    showToast(ALERT_ADDED);
     return response.data;
   }
 );
@@ -38,6 +41,7 @@ export const deleteTodo: any = createAsyncThunk(
   "todos/deleteTodo",
   async (id) => {
     const response = await axios.delete(TODOS_URL + `/${id}`);
+    showToast(ALERT_DELETED);
     return response.data;
   }
 );

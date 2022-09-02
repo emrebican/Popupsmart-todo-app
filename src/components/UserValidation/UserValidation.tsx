@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getUser } from "../../features/todosSlice";
+import { showToast } from "../../utilities/showToast";
 
 import { userNamePass } from "../../utilities/userNamePass";
+import { ALERT_GET_USER } from "../constants/constant";
 
 const UserValidation = () => {
   const [userName, setUserName] = useState<string>("");
@@ -15,9 +17,9 @@ const UserValidation = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    userNamePass(userName) &&
-      dispatch(getUser({ login: true, name: userName }));
-
+    userNamePass(userName)
+      ? dispatch(getUser({ login: true, name: userName }))
+      : showToast(ALERT_GET_USER);
     setUserName("");
   };
 
@@ -26,7 +28,6 @@ const UserValidation = () => {
       <input
         type="text"
         placeholder="Name please..."
-        required
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
       />
