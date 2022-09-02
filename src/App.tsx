@@ -14,7 +14,6 @@ function App() {
   const login = useSelector((state: RootState) => state.todos.user.login);
   const todos = useSelector((state: RootState) => state.todos.todos);
   const themeColor = useSelector((state: RootState) => state.todos.themeColor);
-  console.log(todos);
   console.log(themeColor);
 
   useEffect(() => {

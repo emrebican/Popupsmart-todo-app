@@ -6,13 +6,11 @@ import { addNewTodo } from "../../features/todosSlice";
 import { todoTitlePass } from "../../utilities/userNamePass";
 import { showToast } from "../../utilities/showToast";
 import { TodoInterface } from "../../interfaces/interfaces";
+import { ALERT_3_LETTER, TODO_DATE } from "../constants/constant";
 
 const TodoAdd = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<string>("");
-
-  const TODO_DATE = new Date().toISOString();
-  const alert = "Need to type more than 3 letters!";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,23 +23,21 @@ const TodoAdd = () => {
 
     todoTitlePass(inputValue)
       ? dispatch(addNewTodo(content))
-      : showToast(alert);
+      : showToast(ALERT_3_LETTER);
 
     setInputValue("");
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Type something to do..."
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <button type="submit">Add</button>
-      </form>
-    </>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Type something to do..."
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+      <button type="submit">Add</button>
+    </form>
   );
 };
 

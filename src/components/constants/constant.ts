@@ -5,6 +5,8 @@ const ALERT_ADDED: string = "Todo is added";
 const ALERT_DELETED: string = "Todo is removed";
 const ALERT_EDITED: string = "Edit is successfull";
 
+const TODO_DATE = new Date().toISOString();
+
 export {
   ALERT_COMPLETE,
   ALERT_3_LETTER,
@@ -12,4 +14,5 @@ export {
   ALERT_DELETED,
   ALERT_EDITED,
   ALERT_ADDED,
+  TODO_DATE,
 };

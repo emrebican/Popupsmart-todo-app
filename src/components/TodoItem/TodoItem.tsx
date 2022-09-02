@@ -11,7 +11,6 @@ import { fetchTodos, deleteTodo } from "../../features/todosSlice";
 import { todoTitlePass } from "../../utilities/userNamePass";
 import UseTimeAgo from "../../hooks/useTimeAgo";
 import { showToast } from "../../utilities/showToast";
-
 import { MockInterface } from "../../interfaces/interfaces";
 
 const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
@@ -42,8 +41,8 @@ const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
         `https://630df577b37c364eb70fbb2c.mockapi.io/api/v1/todos/${id}`,
         editing
       );
-      await dispatch(fetchTodos());
       showToast(ALERT_EDITED);
+      await dispatch(fetchTodos());
     } else if (isCompleted) {
       showToast(ALERT_COMPLETE);
     } else {

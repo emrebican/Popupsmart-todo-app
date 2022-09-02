@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { MockInterface } from "../../interfaces/interfaces";
 
 import { RootState } from "../../store";
-
 import TodoItem from "../TodoItem/TodoItem";
 
 const TodoList = () => {
@@ -11,8 +10,11 @@ const TodoList = () => {
   const displayTodos = todos.map((todo: MockInterface) => (
     <TodoItem key={todo.id} {...todo} />
   ));
+  console.log(displayTodos);
 
-  return <div>{displayTodos}</div>;
+  return (
+    <div>{displayTodos.sort((a: any, b: any) => b.props.id - a.props.id)}</div>
+  );
 };
 
 export default TodoList;
