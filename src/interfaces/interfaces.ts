@@ -6,12 +6,12 @@ export interface TodoInterface {
 
 export interface UserInterface {
   login: boolean;
-  name: string;
+  name: string | null;
 }
 
 export interface TodoState {
   todos: any;
-  themeColor: boolean;
+  themeColor: any;
   user: UserInterface;
 }
 

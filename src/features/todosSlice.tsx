@@ -1,16 +1,18 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { TodoState, UserInterface } from "../interfaces/interfaces";
-import getLocalStorage from "../utilities/getLocalStorage";
-import { ALERT_DELETED, ALERT_ADDED } from "../components/constants/constant";
+import { getLocalStorage, getLocalTheme } from "../utilities/getLocalStorage";
+import {
+  ALERT_DELETED,
+  ALERT_ADDED,
+  TODOS_URL,
+} from "../components/constants/constant";
 import { showToast } from "../utilities/showToast";
-
-const TODOS_URL = "https://630df577b37c364eb70fbb2c.mockapi.io/api/v1/todos";
 
 // Initial State
 const initialState: TodoState = {
   todos: [],
-  themeColor: false,
+  themeColor: getLocalTheme ? getLocalTheme : false,
   user: {
     login: getLocalStorage ? true : false,
     name: getLocalStorage ? getLocalStorage : null,

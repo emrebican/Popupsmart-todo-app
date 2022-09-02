@@ -7,6 +7,8 @@ const ALERT_EDITED: string = "Edit is successfull";
 
 const TODO_DATE = new Date().toISOString();
 
+const TODOS_URL = "https://630df577b37c364eb70fbb2c.mockapi.io/api/v1/todos";
+
 export {
   ALERT_COMPLETE,
   ALERT_3_LETTER,
@@ -15,4 +17,5 @@ export {
   ALERT_EDITED,
   ALERT_ADDED,
   TODO_DATE,
+  TODOS_URL
 };

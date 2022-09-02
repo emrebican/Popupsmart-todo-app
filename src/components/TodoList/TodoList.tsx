@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { MockInterface } from "../../interfaces/interfaces";
-
 import { RootState } from "../../store";
+
 import TodoItem from "../TodoItem/TodoItem";
+import { MockInterface } from "../../interfaces/interfaces";
 
 const TodoList = () => {
   const todos = useSelector((state: RootState) => state.todos.todos);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import * as S from "./styled";
 
 import { addNewTodo } from "../../features/todosSlice";
 import { todoTitlePass } from "../../utilities/userNamePass";
@@ -10,6 +11,7 @@ import { ALERT_3_LETTER, TODO_DATE } from "../constants/constant";
 
 const TodoAdd = () => {
   const dispatch = useDispatch();
+  const themeColor = useSelector((state: RootState) => state.todos.themeColor);
   const [inputValue, setInputValue] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,15 +31,17 @@ const TodoAdd = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <S.FormWrapper onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Type something to do..."
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <button type="submit">Add</button>
-    </form>
+      <S.Button type="submit" themeProp={themeColor}>
+        Add
+      </S.Button>
+    </S.FormWrapper>
   );
 };
 
