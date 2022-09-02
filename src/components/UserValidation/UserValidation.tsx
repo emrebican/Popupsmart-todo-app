@@ -6,7 +6,7 @@ import { RootState } from "../../store";
 import * as S from "./styled";
 
 import { userNamePass } from "../../utilities/userNamePass";
-import { ALERT_GET_USER } from "../constants/constant";
+import { ALERT_GET_USER } from "../../constants/constant";
 
 const UserValidation = () => {
   const dispatch = useDispatch();

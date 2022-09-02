@@ -2,11 +2,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { TodoState, UserInterface } from "../interfaces/interfaces";
 import { getLocalStorage, getLocalTheme } from "../utilities/getLocalStorage";
-import {
-  ALERT_DELETED,
-  ALERT_ADDED,
-  TODOS_URL,
-} from "../components/constants/constant";
+import { ALERT_DELETED, ALERT_ADDED, TODOS_URL } from "../constants/constant";
 import { showToast } from "../utilities/showToast";
 
 // Initial State

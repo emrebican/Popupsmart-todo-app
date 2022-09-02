@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const showToast = (alert: string) => {
   toast(alert, {
     position: "top-right",
-    autoClose: 400,
+    autoClose: 700,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,

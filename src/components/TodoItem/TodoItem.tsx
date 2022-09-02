@@ -12,7 +12,7 @@ import {
   ALERT_COMPLETE,
   ALERT_3_LETTER,
   ALERT_EDITED,
-} from "../constants/constant";
+} from "../../constants/constant";
 import { fetchTodos, deleteTodo } from "../../features/todosSlice";
 import { todoTitlePass } from "../../utilities/userNamePass";
 import UseTimeAgo from "../../hooks/useTimeAgo";
@@ -60,6 +60,7 @@ const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
   useEffect(() => {
     setEditTodo(title);
     inputRef.current?.focus();
+    // eslint-disable-next-line
   }, [edit]);
 
   return (

@@ -11,6 +11,7 @@ import { themeToggle, fetchTodos } from "./features/todosSlice";
 import UserValidation from "./components/UserValidation/UserValidation";
 import TodoAdd from "./components/TodoAdd/TodoAdd";
 import TodoList from "./components/TodoList/TodoList";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ function App() {
           color: themeColor ? "#212121" : "#fafafa",
         }}
       />
+      <Footer />
     </S.AppWrapper>
   );
 }

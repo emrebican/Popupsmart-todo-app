@@ -12,7 +12,6 @@ const TodoList = () => {
   const displayTodos = todos.map((todo: MockInterface) => (
     <TodoItem key={todo.id} {...todo} />
   ));
-  console.log(displayTodos);
 
   return (
     <ListWrapper>

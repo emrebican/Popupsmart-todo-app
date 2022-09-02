@@ -7,7 +7,7 @@ import { addNewTodo } from "../../features/todosSlice";
 import { todoTitlePass } from "../../utilities/userNamePass";
 import { showToast } from "../../utilities/showToast";
 import { TodoInterface } from "../../interfaces/interfaces";
-import { ALERT_3_LETTER, TODO_DATE } from "../constants/constant";
+import { ALERT_3_LETTER, TODO_DATE } from "../../constants/constant";
 
 const TodoAdd = () => {
   const dispatch = useDispatch();

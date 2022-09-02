@@ -26,6 +26,10 @@ const Button = styled.button`
     &:active {
         transform: scale(1.2);
     }
+
+    &:hover {
+        font-size: 1.4rem;
+    }
 `;
 
 const Input = styled.input`
