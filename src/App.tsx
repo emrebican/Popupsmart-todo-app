@@ -16,10 +16,15 @@ function App() {
   const dispatch = useDispatch();
   const login = useSelector((state: RootState) => state.todos.user.login);
   const themeColor = useSelector((state: RootState) => state.todos.themeColor);
+  const userName = useSelector((state: RootState) => state.todos.user.name);
 
   useEffect(() => {
     dispatch(fetchTodos());
   }, [dispatch]);
+
+  useEffect(() => {
+    localStorage.setItem("Todo_Theme", JSON.stringify(themeColor));
+  }, [themeColor]);
 
   return (
     <S.AppWrapper themeProp={themeColor}>
@@ -28,6 +33,7 @@ function App() {
       </S.Button>
       {login ? (
         <S.ContentWrapper>
+          <S.Title themeProp={themeColor}>{userName}'s Todo List</S.Title>
           <TodoAdd />
           <TodoList />
         </S.ContentWrapper>
@@ -41,7 +47,10 @@ function App() {
         hideProgressBar
         closeOnClick
         rtl={false}
-        toastStyle={{ backgroundColor: "#212121", color: "#eee" }}
+        toastStyle={{
+          backgroundColor: themeColor ? "#fafafa" : "#c62828",
+          color: themeColor ? "#212121" : "#fafafa",
+        }}
       />
     </S.AppWrapper>
   );

@@ -32,11 +32,11 @@ const TodoAdd = () => {
 
   return (
     <S.FormWrapper onSubmit={handleSubmit}>
-      <input
+      <S.Input
         type="text"
         placeholder="Type something to do..."
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e: any) => setInputValue(e.target.value)}
       />
       <S.Button type="submit" themeProp={themeColor}>
         Add

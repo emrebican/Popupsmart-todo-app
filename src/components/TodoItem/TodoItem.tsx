@@ -1,6 +1,12 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect, useRef } from "react";
+import { RootState } from "../../store";
+import * as S from "./styled";
+
+import { RiDeleteBack2Fill } from "react-icons/ri";
+import { BsCheckLg } from "react-icons/bs";
+import { FaEdit } from "react-icons/fa";
 
 import {
   ALERT_COMPLETE,
@@ -15,6 +21,7 @@ import { MockInterface } from "../../interfaces/interfaces";
 
 const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
   const dispatch = useDispatch();
+  const themeColor = useSelector((state: RootState) => state.todos.themeColor);
   const inputRef = useRef<HTMLInputElement>(null);
   const [editTodo, setEditTodo] = useState<string>(title);
 
@@ -56,25 +63,39 @@ const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
   }, [edit]);
 
   return (
-    <div>
-      <form onSubmit={handleEdit}>
-        {edit && !isCompleted ? (
-          <input
-            type="text"
-            ref={inputRef}
-            value={editTodo}
-            onChange={(e) => setEditTodo(e.target.value)}
-          />
-        ) : (
-          <h2>{title}</h2>
-        )}
-      </form>
-      <h3>{isCompleted ? "true" : "false"}</h3>
-      <button onClick={handleDelete}>delete</button>
-      <button onClick={handleComplete}>complete</button>
-      <button onClick={handleEdit}>edit</button>
-      <UseTimeAgo timestamp={date} />
-    </div>
+    <S.ItemWrapper
+      themeProp={themeColor}
+      completeProp={isCompleted}
+      style={{ backgroundColor: isCompleted && "#00695c" }}
+    >
+      <S.FormWrapper>
+        <form onSubmit={handleEdit}>
+          {edit && !isCompleted ? (
+            <S.Input
+              themeProp={themeColor}
+              type="text"
+              ref={inputRef}
+              value={editTodo}
+              onChange={(e: any) => setEditTodo(e.target.value)}
+            />
+          ) : (
+            <S.Title>{title}</S.Title>
+          )}
+        </form>
+        <UseTimeAgo timestamp={date} />
+      </S.FormWrapper>
+      <S.ButtonWrapper>
+        <S.Button themeProp={themeColor} onClick={handleDelete}>
+          <RiDeleteBack2Fill />
+        </S.Button>
+        <S.Button themeProp={themeColor} onClick={handleComplete}>
+          <BsCheckLg />
+        </S.Button>
+        <S.Button themeProp={themeColor} onClick={handleEdit}>
+          <FaEdit />
+        </S.Button>
+      </S.ButtonWrapper>
+    </S.ItemWrapper>
   );
 };
 

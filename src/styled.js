@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 const AppWrapper = styled.div`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,4 +41,9 @@ const ContentWrapper = styled.div`
     align-items: center;
 `;
 
-export { AppWrapper, Button, ContentWrapper }
+const Title = styled.h2`
+    color: ${(props) => props.themeProp ? "#fafafa" : "#212121"};
+    text-transform: capitalize;
+`;
+
+export { AppWrapper, Button, ContentWrapper, Title }

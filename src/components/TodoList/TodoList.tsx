@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
+import { ListWrapper } from "./styled";
+
 import TodoItem from "../TodoItem/TodoItem";
 import { MockInterface } from "../../interfaces/interfaces";
 
@@ -13,7 +15,9 @@ const TodoList = () => {
   console.log(displayTodos);
 
   return (
-    <div>{displayTodos.sort((a: any, b: any) => b.props.id - a.props.id)}</div>
+    <ListWrapper>
+      {displayTodos.sort((a: any, b: any) => b.props.id - a.props.id)}
+    </ListWrapper>
   );
 };
 

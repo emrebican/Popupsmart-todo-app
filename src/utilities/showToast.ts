@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const showToast = (alert: string) => {
-  toast.warn(alert, {
+  toast(alert, {
     position: "top-right",
     autoClose: 1500,
     hideProgressBar: true,
