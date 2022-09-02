@@ -13,6 +13,7 @@ const TodoAdd = () => {
   const [inputValue, setInputValue] = useState<string>("");
 
   const TODO_DATE = new Date().toISOString();
+  const alert = "Need to type more than 3 letters!";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,7 +24,9 @@ const TodoAdd = () => {
       date: TODO_DATE,
     };
 
-    todoTitlePass(inputValue) ? dispatch(addNewTodo(content)) : showToast();
+    todoTitlePass(inputValue)
+      ? dispatch(addNewTodo(content))
+      : showToast(alert);
 
     setInputValue("");
   };

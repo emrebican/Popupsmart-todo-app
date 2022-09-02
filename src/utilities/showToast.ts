@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const showToast = () => {
-  toast.warn("Need to type more than 3 letters!", {
+export const showToast = (alert: string) => {
+  toast.warn(alert, {
     position: "top-right",
     autoClose: 1500,
     hideProgressBar: true,

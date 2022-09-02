@@ -4,9 +4,12 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { fetchTodos, deleteTodo } from "../../features/todosSlice";
 import { todoTitlePass } from "../../utilities/userNamePass";
-import TimeAgo from "../../hooks/TimeAgo";
+import UseTimeAgo from "../../hooks/useTimeAgo";
+import { showToast } from "../../utilities/showToast";
 
 import { MockInterface } from "../../interfaces/interfaces";
+
+const alert = "Need to type more than 3 letters!";
 
 const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
   const dispatch = useDispatch();
@@ -31,12 +34,17 @@ const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
     e.preventDefault();
     const editing = { title: editTodo, edit: !edit };
 
-    !isCompleted &&
-      todoTitlePass(editTodo) &&
-      (await axios.put(
+    if (!isCompleted && todoTitlePass(editTodo)) {
+      await axios.put(
         `https://630df577b37c364eb70fbb2c.mockapi.io/api/v1/todos/${id}`,
         editing
-      ));
+      );
+    } else if (isCompleted) {
+      const alert = "Todo is already completed";
+      showToast(alert);
+    } else {
+      showToast(alert);
+    }
 
     await dispatch(fetchTodos());
   };
@@ -64,7 +72,7 @@ const TodoItem = ({ title, date, edit, isCompleted, id }: MockInterface) => {
       <button onClick={handleDelete}>delete</button>
       <button onClick={handleComplete}>complete</button>
       <button onClick={handleEdit}>edit</button>
-      <TimeAgo timestamp={date} />
+      <UseTimeAgo timestamp={date} />
     </div>
   );
 };
